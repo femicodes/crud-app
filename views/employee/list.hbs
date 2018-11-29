@@ -17,8 +17,8 @@
               <td>{{this.mobile}}</td>
               <td>{{this.city}}</td>
               <td>
-                  <a><i class="fas fa-pencil-alt"></i></a>
-                  <a><i class="fas fa-trash-alt"></i></a>
+                  <a href="/employee/{{this._id}}"><i class="fas fa-pencil-alt"></i></a>
+                  <a href="/employee/delete/{{this._id}}"><i class="fas fa-trash-alt"></i></a>
               </td>
           </tr>
         {{/each}}
