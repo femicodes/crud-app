@@ -4,14 +4,26 @@ const mongoose = require('mongoose');
 const Employee = require('../models/Employee');
 
 router.get('/', (req, res) => {
-    res.render('employee/addOrEdit', {
+    res.render('employee/add', {
         viewTitle: 'Insert Employee'
     });
 });
 
 router.get('/list', (req, res) => {
-    res.json('from list');
+    Employee.find((err, docs) => {
+        if (!err) {
+            res.render('employee/list', {
+                list: docs
+            });
+        } else {
+            console.log('Error in retrieving employee list: ' + err);
+        }
+    });
 });
+
+router.get('/:id', (req, res) => {
+    
+})
 
 router.post('/', (req, res) => {
     insertRecord(req, res);
@@ -28,7 +40,7 @@ let insertRecord = (req, res) => {
             res.redirect('employee/list');
         } else if (err.name == 'ValidationError') {
             handleValidationError(err, req.body);
-            res.render('employee/addOrEdit', {
+            res.render('employee/add', {
                 viewTitle: 'Insert Employee',
                 employee: req.body
             });
