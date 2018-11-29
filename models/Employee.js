@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-let employeeSchema = new mongoose.Schema({
+let employeeSchema = new Schema({
     fullName: {
         type: String,
         required: true
@@ -10,7 +11,7 @@ let employeeSchema = new mongoose.Schema({
         required: true
     },
     mobile: {
-        type: String,
+        type: Number,
         required: true
     },
     city: {
@@ -19,4 +20,5 @@ let employeeSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('Employee', employeeSchema);
+let Employee = mongoose.model('Employee', employeeSchema);
+module.exports = Employee;
